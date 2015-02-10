@@ -197,7 +197,7 @@ namespace Illumina.BaseSpace.SDK
 
         private class BSWebClient : WebClient
         {
-            //TODO: Doesnt seem right? Need refactor?
+            //TODO: Doesnt seem right? Need refactoring?
             // const int CONNECTION_LIMIT = 16;
             protected override WebRequest GetWebRequest(Uri address)
             {
@@ -205,6 +205,21 @@ namespace Illumina.BaseSpace.SDK
 
                 if (request != null && request.ServicePoint.ConnectionLimit < 20)
                     request.ServicePoint.ConnectionLimit = 10000;  //Note: Is this changing global value?
+
+                // Workaround to support slow internet connections.
+                // On very slow internet connections (specifically between the client and the BaseSpace API server), 
+                // multi-part file uploads tend to fail due to a request timeout.
+                if (request != null)
+                {
+                    // Set the timeout to 10 min (vs default 100 sec). 
+                    // This setting was confirmed to work for the minimum upload part size of 5 MB
+                    // on connections with sustainable upload speeds of 20 KB/s and higher.
+                    // Technically, this timeout should be tied to the configured part size, 
+                    // but cursory tests demonstrated that for larger part sizes greater timeouts
+                    // start inducing errors (500 in particular) on the server side.
+                    request.Timeout = 600000;
+                    request.ReadWriteTimeout = request.Timeout;
+                }
 
                 return request;
             }
