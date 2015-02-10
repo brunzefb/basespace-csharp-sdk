@@ -35,57 +35,58 @@ namespace Illumina.BaseSpace.SDK
 
         protected IWebClient WebClient { get; private set; }
 
-        #region Users
-        public GetUserResponse GetUser(GetUserRequest request, IRequestOptions options = null)
-        {
-            return WebClient.Send(request, options);
-        }
-        #endregion
+		#region Users
+		public GetUserResponse GetUser(GetUserRequest request, IRequestOptions options = null)
+		{
+			return WebClient.Send(request, options);
+		}
+		#endregion
 
-        #region Runs
-        public GetRunResponse GetRun(GetRunRequest request, IRequestOptions options = null)
-        {
-            return WebClient.Send(request, options);
-        }
+		#region Runs
+		public GetRunResponse GetRun(GetRunRequest request, IRequestOptions options = null)
+		{
+			return WebClient.Send(request, options);
+		}
 
-        public ListRunsResponse ListRuns(ListRunsRequest request, IRequestOptions options = null)
-        {
-            return WebClient.Send(request, options);
-        }
-        #endregion
+		public ListRunsResponse ListRuns(ListRunsRequest request, IRequestOptions options = null)
+		{
+			return WebClient.Send(request, options);
+		}
+		#endregion
 
-        #region Projects
-        public GetProjectResponse GetProject(GetProjectRequest request, IRequestOptions options = null)
-        {
-            return WebClient.Send(request, options);
-        }
+		#region Projects
+		public GetProjectResponse GetProject(GetProjectRequest request, IRequestOptions options = null)
+		{
+			return WebClient.Send(request, options);
+		}
 
-        public ListProjectsResponse ListProjects(ListProjectsRequest request, IRequestOptions options = null)
-        {
-            return WebClient.Send(request, options);
-        }
+		public ListProjectsResponse ListProjects(ListProjectsRequest request, IRequestOptions options = null)
+		{
+			return WebClient.Send(request, options);
+		}
 
-        public CreateProjectResponse CreateProject(CreateProjectRequest request, IRequestOptions options = null)
-        {
-            return WebClient.Send(request, options);
-        }
-        #endregion
+		public CreateProjectResponse CreateProject(CreateProjectRequest request, IRequestOptions options = null)
+		{
+			return WebClient.Send(request, options);
+		}
+		#endregion
 
-        #region AppSessions
-        public GetAppSessionResponse GetAppSession(GetAppSessionRequest request, IRequestOptions options = null)
-        {
-            return WebClient.Send(request, options);
-        }
+		#region AppSessions
 
-        public ListCurrentAppSessionsResponse ListCurrentAppSessions(ListCurrentAppSessionsRequest request, IRequestOptions options = null)
+        public ListAppSessionsResponse ListAppSessions(ListAppSessionsRequest request, IRequestOptions options = null)
         {
             return WebClient.Send(request, options);
         }
 
-        public UpdateAppSessionResponse UpdateAppSession(UpdateAppSessionRequest request, IRequestOptions options = null)
-        {
-            return WebClient.Send(request, options);
-        }
+		public GetAppSessionResponse GetAppSession(GetAppSessionRequest request, IRequestOptions options = null)
+		{
+			return WebClient.Send(request, options);
+		}
+
+		public UpdateAppSessionResponse UpdateAppSession(UpdateAppSessionRequest request, IRequestOptions options = null)
+		{
+			return WebClient.Send(request, options);
+		}
 
         public CreateAppSessionLogsResponse CreateAppSessionLogs(CreateAppSessionLogsRequest request, IRequestOptions options = null)
         {
@@ -117,16 +118,18 @@ namespace Illumina.BaseSpace.SDK
             return WebClient.Send(request, options);
         }
 
-        public CreateAppResultResponse CreateAppResult(CreateAppResultRequest request, IRequestOptions options = null)
+
+        public ListAppResultsResponse ListAppResultsFromAppSession(ListAppResultsFromAppSessionRequest request,
+            IRequestOptions options = null)
         {
             return WebClient.Send(request, options);
         }
 
-        public ListAppResultsResponse ListAppResultByAppSession(ListAppResultsByAppSessionRequest request, IRequestOptions options = null)
-        {
-            return WebClient.Send(request, options);
-        }
-        #endregion
+		public CreateAppResultResponse CreateAppResult(CreateAppResultRequest request, IRequestOptions options = null)
+		{
+			return WebClient.Send(request, options);
+		}
+		#endregion
 
         #region Genomes
         public GetGenomeResponse GetGenome(GetGenomeRequest request, IRequestOptions options = null)
@@ -375,6 +378,64 @@ namespace Illumina.BaseSpace.SDK
         }
 
         public ListPurchasedProductsResponse ListPurchasedProducts(ListPurchasedProductsRequest request, IRequestOptions options = null)
+        {
+            return WebClient.Send(request, options);
+        }
+        #endregion
+
+        #region Prep-BiologicalSamples
+        public CreateBiologicalSampleResponse CreateBiologicalSample(CreateBiologicalSampleRequest request, IRequestOptions options = null)
+        {
+            return WebClient.Send(request, options);
+        }
+        #endregion
+
+        #region Prep-Libraries
+        public CreateLibraryContainerResponse CreateLibraryContainer(CreateLibraryContainerRequest request, IRequestOptions options = null)
+        {
+            return WebClient.Send(request, options);
+        }
+
+        public CreateOrUpdateContainerLibrariesResponse CreateOrUpdateContainerLibraries(CreateOrUpdateContainerLibrariesRequest request, IRequestOptions options = null)
+        {
+            return WebClient.Send(request, options);
+        }
+
+        public ListSupportedLibraryPrepKitsResponse ListSupportedLibraryPrepKits(ListSupportedLibraryPrepKitsRequest request, IRequestOptions options = null)
+        {
+            return WebClient.Send(request, options);
+        }
+
+        public GetLibraryPrepKitIdResponse GetLibraryPrepKit(GetLibraryPrepKitIdRequest request, IRequestOptions options = null)
+        {
+            return WebClient.Send(request, options);
+        }
+
+        public GetContainerToLibraryMappingResponse GetContainerToLibraryMapping(GetContainerToLibraryMappingRequest request, IRequestOptions options = null)
+        {
+            return WebClient.Send(request, options);
+        }
+        #endregion
+
+        #region Prep-Pool
+        public CreateLibraryPoolResponse CreateLibraryPool(CreateLibraryPoolRequest request, IRequestOptions options = null)
+        {
+            return WebClient.Send(request, options);
+        }
+
+        public UpdatePoolToLibraryMappingResponse UpdatePoolToLibraryMapping(UpdatePoolToLibraryMappingRequest request, IRequestOptions options = null)
+        {
+            return WebClient.Send(request, options);
+        }
+        #endregion
+
+        #region Prep-PlannedRun
+        public CreatePlannedRunResponse CreatePlannedRun(CreatePlannedRunRequest request, IRequestOptions options = null)
+        {
+            return WebClient.Send(request, options);
+        }
+
+        public PlannedRunReadyResponse PlannedRunReadyRequest(PlannedRunReadyRequest request, IRequestOptions options = null)
         {
             return WebClient.Send(request, options);
         }

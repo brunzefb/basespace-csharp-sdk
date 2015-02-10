@@ -43,9 +43,27 @@ namespace Illumina.BaseSpace.SDK.Types
         public int Number { get; set; }
 
         [DataMember]
+        public InstrumentCompact Instrument { get; set; }
+
+        [DataMember]
         public UserCompact UserOwnedBy { get; set; }
 
         public string Type { get { return PropertyTypes.RUN; } }
+
+        [DataMember]
+        public string PlatformName { get; set; }
+
+        [DataMember]
+        public int NumCyclesRead1 { get; set; }
+
+        [DataMember]
+        public int NumCyclesRead2 { get; set; }
+
+        [DataMember]
+        public int NumCyclesIndex1 { get; set; }
+
+        [DataMember]
+        public int NumCyclesIndex2 { get; set; }
 
         public override string ToString()
         {
