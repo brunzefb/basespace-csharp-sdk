@@ -3,6 +3,7 @@ using System.IO;
 using System.Net;
 using System.Threading;
 using Illumina.BaseSpace.SDK.ServiceModels;
+using Illumina.BaseSpace.SDK.ServiceModels.Response;
 using Illumina.BaseSpace.SDK.Types;
 
 namespace Illumina.BaseSpace.SDK
@@ -40,6 +41,12 @@ namespace Illumina.BaseSpace.SDK
 		{
 			return WebClient.Send(request, options);
 		}
+
+        public GetAccessTokenDetailsResponse GetUserPermissions(GetAccessTokenDetailsRequest request, IRequestOptions options = null)
+        {
+            return WebClient.Send(request, options);
+        }
+
 		#endregion
 
 		#region Runs
@@ -48,7 +55,12 @@ namespace Illumina.BaseSpace.SDK
 			return WebClient.Send(request, options);
 		}
 
-		public ListRunsResponse ListRuns(ListRunsRequest request, IRequestOptions options = null)
+        public GetRunSequencingStatsResponse GetRunSequencingStats(GetRunSequencingStatsRequest request, IRequestOptions options = null)
+        {
+            return WebClient.Send(request, options);
+        }
+
+        public ListRunsResponse ListRuns(ListRunsRequest request, IRequestOptions options = null)
 		{
 			return WebClient.Send(request, options);
 		}
@@ -415,6 +427,11 @@ namespace Illumina.BaseSpace.SDK
         {
             return WebClient.Send(request, options);
         }
+
+        public ListSampleLibrariesResponse ListSampleLibrariesFromRun(ListSampleLibrariesFromRunRequest request, IRequestOptions options = null)
+        {
+            return WebClient.Send(request, options);
+        }
         #endregion
 
         #region Prep-Pool
@@ -436,6 +453,18 @@ namespace Illumina.BaseSpace.SDK
         }
 
         public PlannedRunReadyResponse PlannedRunReadyRequest(PlannedRunReadyRequest request, IRequestOptions options = null)
+        {
+            return WebClient.Send(request, options);
+        }
+        #endregion
+
+        #region LibraryContainers
+        public ListLibraryContainersResponse ListLibraryContainers(ListLibraryContainersRequest request, IRequestOptions options = null)
+        {
+            return WebClient.Send(request, options);
+        }
+
+        public GetLibraryContainerResponse GetLibraryContainer(GetLibraryContainerRequest request, IRequestOptions options = null)
         {
             return WebClient.Send(request, options);
         }

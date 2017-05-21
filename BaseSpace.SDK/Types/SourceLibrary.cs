@@ -93,6 +93,15 @@ namespace Illumina.BaseSpace.SDK.Types
 
         [DataMember]
         public LibraryContainerCompact Container { get; set; }
+
+        [DataMember]
+        public string ContainerEndPosition { get; set; }
+
+        [DataMember]
+        public string LibraryName { get; set; }
+
+        [DataMember]
+        public int? InsertSize { get; set; }
     }
 
     public class SampleLibraryRequest
@@ -147,6 +156,12 @@ namespace Illumina.BaseSpace.SDK.Types
 
         [DataMember]
         public DateTime DateModified { get; set; }
+
+        [DataMember]
+        public int? NumberOfSamples { get; set; }
+
+        [DataMember]
+        public int? PoolPlexity { get; set; }
     }
 
     [DataContract(Name = "LibraryContainer")]
@@ -157,6 +172,9 @@ namespace Illumina.BaseSpace.SDK.Types
 
         [DataMember]
         public bool IndexByWell { get; set; }
+
+        [DataMember]
+        public RunCompact PrepRun { get; set; }
     }
 
     [DataContract(Name = "LibraryPoolCompact")]
@@ -166,7 +184,7 @@ namespace Illumina.BaseSpace.SDK.Types
         public override string Id { get; set; }
 
         [DataMember]
-        public override Uri Href { get ; set; }
+        public override Uri Href { get; set; }
 
         [DataMember]
         public string UserPoolId { get; set; }
@@ -220,6 +238,9 @@ namespace Illumina.BaseSpace.SDK.Types
 
         [DataMember]
         public string AdapterSequenceRead2 { get; set; }
+
+        [DataMember]
+        public string ProtocolVersion { get; set; }
     }
 
     [DataContract(Name = "LibraryPrepKit")]
@@ -231,6 +252,12 @@ namespace Illumina.BaseSpace.SDK.Types
         [DataMember]
         public IEnumerable<LibraryIndexCompact> Index2Sequences { get; set; }
     }
-}
 
+    public enum LibraryContainerSortFields
+    {
+        Id,
+        DateCreated,
+        DateModified
+    }
+}
 
