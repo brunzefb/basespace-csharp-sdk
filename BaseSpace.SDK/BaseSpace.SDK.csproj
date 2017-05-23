@@ -13,8 +13,6 @@
     <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
     <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
     <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
-
-    
     <PackageVersion>1.0.0</PackageVersion>
     <Authors>Illumina inc.</Authors>
     <Description>BaseSpace SDK</Description>
@@ -25,8 +23,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Common.Logging.Core" Version="3.4.0-Beta2" />
+    <PackageReference Include="Moq" Version="4.7.10" />
+    <PackageReference Include="ServiceStack.Client.Core" Version="1.0.41" />
+    <PackageReference Include="ServiceStack.Common.Core" Version="1.0.41" />
+    <PackageReference Include="ServiceStack.Interfaces.Core" Version="1.0.41" />
+    <PackageReference Include="ServiceStack.Text.Core" Version="1.0.41" />
     <PackageReference Include="System.Net.Requests" Version="4.3.0" />
-    <PackageReference Include="TerminalVelocity.Sharp" Version="1.0.0" />
+    <PackageReference Include="TerminalVelocity.Sharp" Version="1.0.1" />
   </ItemGroup>
 
 </Project>

@@ -58,7 +58,7 @@ namespace Illumina.BaseSpace.SDK.Types
     {
         // add properties later
         [DataMember]
-        public Species Species { get; set; }
+        public new Species Species { get; set; }
     }
 
     [DataContract(Name = "SampleLibrary")]

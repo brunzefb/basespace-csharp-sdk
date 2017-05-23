@@ -13,12 +13,12 @@ namespace Illumina.BaseSpace.SDK.Deserialization
             var json = JsonObject.Parse(jsonString);
             var ret = new PropertyItemsResourceList()
             {
-                DisplayedCount = json["DisplayedCount"].To<int?>(),
-                TotalCount = json["TotalCount"].To<int?>(),
-                Limit = json["Limit"].To<int>(),
-                Offset = json["Offset"].To<int>(),
-                SortBy = json["SortBy"].To<PropertyItemsSortByParameters?>(),
-                SortDir = json["SortDir"].To<SortDirection?>()
+                DisplayedCount = int.Parse(json["DisplayedCount"]),
+                TotalCount = int.Parse(json["TotalCount"]),
+                Limit = int.Parse(json["Limit"]),
+                Offset = int.Parse(json["Offset"]),
+                SortBy = (PropertyItemsSortByParameters?)int.Parse(json["SortBy"]),
+                SortDir = (SortDirection)int.Parse(json["SortDir"])
             };
 
             ret.Type = json["Type"];
@@ -119,7 +119,7 @@ namespace Illumina.BaseSpace.SDK.Deserialization
                         property.Items = JsonSerializer.DeserializeFromString<PropertyContentMap[]>(json.Child("Items"));
                         break;
                     default:
-                        property.Items = json.ArrayObjects("Items").Select(itemj => DeserializePropertyReference(simpleType, itemj.ToJson())).Where(x => x != null).ToArray();
+                        property.Items = json.ArrayObjects("Items").Select(itemj => DeserializePropertyReference(simpleType, itemj.ToString())).Where(x => x != null).ToArray();
                         break;
                 }
             }

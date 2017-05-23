@@ -1,15 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net;
-using System.Web.Util;
 using Common.Logging;
 using Illumina.BaseSpace.SDK.Deserialization;
 using Illumina.BaseSpace.SDK.ServiceModels;
 using Illumina.BaseSpace.SDK.Types;
 using Illumina.TerminalVelocity;
-using ServiceStack.ServiceClient.Web;
-using ServiceStack.ServiceModel.Serialization;
+using ServiceStack;
+using ServiceStack.Logging;
+using ServiceStack.Serialization;
 using ServiceStack.Text;
+using Moq;
 
 namespace Illumina.BaseSpace.SDK
 {
@@ -18,7 +18,7 @@ namespace Illumina.BaseSpace.SDK
         private readonly JsonServiceClient client;
         private readonly JsonServiceClient clientBilling;
 
-        private readonly ILog logger;
+        private readonly ServiceStack.Logging.ILog logger = new Mock<ServiceStack.Logging.ILog>().Object;
 
         private readonly IClientSettings settings;
 
@@ -32,8 +32,7 @@ namespace Illumina.BaseSpace.SDK
 
             this.settings = settings;
             DefaultRequestOptions = defaultOptions ?? new RequestOptions();
-            logger = LogManager.GetCurrentClassLogger();
-
+           
             // call something on this object so it gets initialized in single threaded context
             HttpEncoder.Default.SerializeToString();
 
@@ -46,21 +45,21 @@ namespace Illumina.BaseSpace.SDK
             HttpEncoder.Current.SerializeToString();
 
             client = new JsonServiceClient(settings.BaseSpaceApiUrl);
-            client.LocalHttpWebRequestFilter += WebRequestFilter;
+            client.RequestFilter += WebRequestFilter;
 
             if (settings.TimeoutMin > 0)
                 client.Timeout = TimeSpan.FromMinutes(settings.TimeoutMin);
 
             clientBilling = new JsonServiceClient(settings.BaseSpaceBillingApiUrl);
-            clientBilling.LocalHttpWebRequestFilter += WebRequestFilter;
+            clientBilling.RequestFilter += WebRequestFilter;
         }
 
         static JsonWebClient()
         {
             // setting this just to make sure it's not set in Linux
-            JsonDataContractDeserializer.Instance.UseBcl = false;
+            JsonDataContractSerializer.Instance.UseBcl = false;
             // BaseSpace uses this format for DateTime
-            JsConfig.DateHandler = JsonDateHandler.ISO8601;
+            JsConfig.DateHandler =DateHandler.ISO8601;
 
             JsConfig<Uri>.DeSerializeFn = s => new Uri(s, s.StartsWith("http") ? UriKind.Absolute : UriKind.Relative);
 
@@ -68,7 +67,7 @@ namespace Illumina.BaseSpace.SDK
             JsConfig<IContentReference<IAbstractResource>>.RawDeserializeFn = ReferenceDeserializer.JsonToReference;
             
             JsConfig<PropertyCompact>.RawDeserializeFn = PropertyDeserializer.JsonToPropertyCompact;
-            JsConfig<Property>.RawDeserializeFn = PropertyDeserializer.JsonToProperty;
+            JsConfig<Types.Property>.RawDeserializeFn = PropertyDeserializer.JsonToProperty;
 
             JsConfig<INotification<object>>.RawDeserializeFn = MiscDeserializers.NotificationDeserializer;
             JsConfig<PropertyItemsResourceList>.RawDeserializeFn = PropertyDeserializer.JsonToPropertyItemsResourceList;     
@@ -96,22 +95,14 @@ namespace Illumina.BaseSpace.SDK
                     }
                 }
 
-                if (logger.IsInfoEnabled)
-                {
-                    var infoMessage = request.GetInfoLogMessage();
-                    if (!string.IsNullOrEmpty(infoMessage))
-                    {
-                        logger.Info(infoMessage);
-                    }
-                }
-
+                
                 TReturn result = null;
                 options = options ?? DefaultRequestOptions;
 
                 var clientForRequest = PickClientForApiName(request.GetApiName());
-
+				var log = new Mock<Common.Logging.ILog>().Object;
                 RetryLogic.DoWithRetry(options.RetryAttempts, request.GetName(),
-                    () => result = request.GetSendFunc(clientForRequest)(), logger);
+                    () => result = request.GetSendFunc(clientForRequest)(), log);
                 return result;
             }
             catch (WebServiceException webx)

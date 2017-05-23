@@ -7,6 +7,7 @@ using Common.Logging;
 using Illumina.BaseSpace.SDK.ServiceModels;
 using Illumina.BaseSpace.SDK.Types;
 using Illumina.TerminalVelocity;
+using Moq;
 
 namespace Illumina.BaseSpace.SDK
 {
@@ -16,7 +17,7 @@ namespace Illumina.BaseSpace.SDK
         private readonly ILargeFileDownloadParameters _parameters;
 	    private readonly IWebProxy _proxy;
 	    private CancellationToken _token { get; set; }
-        private static ILog logger = LogManager.GetCurrentClassLogger();
+		private static ILog logger = new Mock<ILog>().Object;
         private bool _enableLogging = true;
         private string _fileName = "NotSet";
 

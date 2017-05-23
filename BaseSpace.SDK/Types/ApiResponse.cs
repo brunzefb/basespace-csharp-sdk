@@ -7,7 +7,7 @@ namespace Illumina.BaseSpace.SDK.Types
     public class ApiResponse<TResponse> : IApiResponse<TResponse>
     {
         private IList<INotification<object>> notifications = new List<INotification<object>>();
-        private ServiceStack.ServiceInterface.ServiceModel.ResponseStatus status = new ServiceStack.ServiceInterface.ServiceModel.ResponseStatus();
+        private ServiceStack.ResponseStatus status = new ServiceStack.ResponseStatus();
 
         public ApiResponse() { }
 
@@ -20,7 +20,7 @@ namespace Illumina.BaseSpace.SDK.Types
         public virtual TResponse Response { get; set; }
 
         [DataMember(IsRequired = true)]
-        public ServiceStack.ServiceInterface.ServiceModel.ResponseStatus ResponseStatus
+        public ServiceStack.ResponseStatus ResponseStatus
         {
             get { return status; }
             set { status = value; }

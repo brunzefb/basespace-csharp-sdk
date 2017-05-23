@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Net;
-using ServiceStack.ServiceClient.Web;
-using ServiceStack.ServiceInterface.ServiceModel;
+using ServiceStack;
 using ServiceStack.Text;
 
 namespace Illumina.BaseSpace.SDK

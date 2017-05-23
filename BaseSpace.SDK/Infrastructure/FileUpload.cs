@@ -5,10 +5,12 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using Common.Logging;
+using Moq;
 using Illumina.BaseSpace.SDK.ServiceModels;
-using ServiceStack.ServiceClient.Web;
+using ServiceStack;
 using Illumina.BaseSpace.SDK.Types;
 using File = System.IO.File;
+
 
 namespace Illumina.BaseSpace.SDK
 {
@@ -17,14 +19,16 @@ namespace Illumina.BaseSpace.SDK
         protected IWebClient WebClient { get; set; }
         protected IClientSettings ClientSettings { get; set; }
         protected IRequestOptions Options { get; set; }
-        protected ILog Logger = LogManager.GetCurrentClassLogger();
+		protected Common.Logging.ILog Logger;
         
         public FileUpload(IWebClient webClient, IClientSettings settings, IRequestOptions options)
         {
             WebClient = webClient;
             ClientSettings = settings;
             Options = options;
-        }
+			var mock = new Mock<Common.Logging.ILog>();
+			Logger = mock.Object;
+		}
 
 		public virtual TResult UploadFile<TResult>(FileUploadRequestBase<TResult> request)
 			where TResult : FileResponse

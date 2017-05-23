@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Net;
 using System.Threading;
 using Common.Logging;
-using ServiceStack.ServiceClient.Web;
+using ServiceStack;
 
 namespace Illumina.BaseSpace.SDK
 {
