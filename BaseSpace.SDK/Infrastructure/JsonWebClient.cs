@@ -33,6 +33,7 @@ namespace Illumina.BaseSpace.SDK
             this.settings = settings;
             DefaultRequestOptions = defaultOptions ?? new RequestOptions();
            
+			/*  DISABLED TO TEST 
             // call something on this object so it gets initialized in single threaded context
             HttpEncoder.Default.SerializeToString();
 
@@ -43,7 +44,7 @@ namespace Illumina.BaseSpace.SDK
 			}
 
             HttpEncoder.Current.SerializeToString();
-
+			*/
             client = new JsonServiceClient(settings.BaseSpaceApiUrl);
             client.RequestFilter += WebRequestFilter;
 
