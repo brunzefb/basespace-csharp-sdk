@@ -1,297 +1,32 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{53207AEA-0E50-45AB-9AA5-D460CD3844BB}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Illumina.BaseSpace.SDK</RootNamespace>
-    <AssemblyName>Illumina.BaseSpace.SDK</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
-    <PackageOutputDir>$(ProjectDir)bin\$(Configuration)</PackageOutputDir>
-    <ProductVersion>12.0.0</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <RestorePackages>true</RestorePackages>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <RuntimeFrameworkVersion>2.0.0-preview1-002111-00</RuntimeFrameworkVersion>
+    <AssemblyName>BaseSpaceSdk</AssemblyName>
+    <PackageId>BaseSpaceSdk</PackageId>
+    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
+    <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
+    <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
+    <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+
+    
+    <PackageVersion>1.0.0</PackageVersion>
+    <Authors>Illumina inc.</Authors>
+    <Description>BaseSpace SDK</Description>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageReleaseNotes>First release</PackageReleaseNotes>
+    <Copyright>Illumina 2017 and contributors. All rights reserved.</Copyright>
+    <PackageTags>SDK BaseSpace Genomics</PackageTags>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup>
-    <SignAssembly>false</SignAssembly>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="Common.Logging, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
-      <HintPath>..\packages\Common.Logging.3.3.1\lib\net40\Common.Logging.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Common.Logging.Core, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
-      <HintPath>..\packages\Common.Logging.Core.3.3.1\lib\net40\Common.Logging.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Illumina.TerminalVelocity, Version=1.0.0.141, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\TerminalVelocity.Sharp.1.0.0.141\lib\net40\Illumina.TerminalVelocity.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="ServiceStack.Common, Version=3.9.54.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ServiceStack.Common.3.9.54\lib\net35\ServiceStack.Common.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="ServiceStack.Interfaces, Version=3.9.54.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ServiceStack.Common.3.9.54\lib\net35\ServiceStack.Interfaces.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="ServiceStack.Text, Version=3.9.54.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ServiceStack.Text.3.9.54\lib\net35\ServiceStack.Text.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <PackageReference Include="System.Net.Requests" Version="4.3.0" />
+    <PackageReference Include="TerminalVelocity.Sharp" Version="1.0.0" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="BaseSpaceClient.cs" />
-    <Compile Include="Constants.cs" />
-    <Compile Include="Deserialization\MiscDeserializers.cs" />
-    <Compile Include="Deserialization\PropertyDeserializer.cs" />
-    <Compile Include="Deserialization\ReferenceDeserializer.cs" />
-    <Compile Include="Extensions\PropertyExtensions.cs" />
-    <Compile Include="Extensions\RequestUrlExtensions.cs" />
-    <Compile Include="Infrastructure\ApiNames.cs" />
-    <Compile Include="Infrastructure\BaseSpaceClientSettings.cs" />
-    <Compile Include="Infrastructure\BaseSpaceException.cs" />
-    <Compile Include="Infrastructure\BufferPool.cs" />
-    <Compile Include="Infrastructure\DownloadFileCommand.cs" />
-    <Compile Include="Infrastructure\FileDownloadProgressChangedEventHandler.cs" />
-    <Compile Include="Infrastructure\FileUpload.cs" />
-    <Compile Include="Infrastructure\HttpMethods.cs" />
-    <Compile Include="Infrastructure\OAuth2Authentication.cs" />
-    <Compile Include="Infrastructure\JsonWebClient.cs" />
-    <Compile Include="Infrastructure\RetryLogic.cs" />
-    <Compile Include="Interfaces\IAbstractResource.cs" />
-    <Compile Include="Interfaces\IAbstractQueryParameters.cs" />
-    <Compile Include="Interfaces\IApiResponse.cs" />
-    <Compile Include="Interfaces\IAuthentication.cs" />
-    <Compile Include="Interfaces\IBaseSpaceClient.cs" />
-    <Compile Include="Interfaces\IBaseSpaceRequest.cs" />
-    <Compile Include="Interfaces\IClientSettings.cs" />
-    <Compile Include="Interfaces\IPropertyContent.cs" />
-    <Compile Include="Interfaces\IPropertyContainingResource.cs" />
-    <Compile Include="Interfaces\IReference.cs" />
-    <Compile Include="Interfaces\IRequest.cs" />
-    <Compile Include="Interfaces\IRequestOptions.cs" />
-    <Compile Include="Interfaces\IWebClient.cs" />
-    <Compile Include="ServiceModels\Request\GetLibraryContainerRequest.cs" />
-    <Compile Include="ServiceModels\Request\GetAccessTokenDetailsRequest.cs" />
-    <Compile Include="ServiceModels\Request\GetRunSequencingStatsRequest.cs" />
-    <Compile Include="ServiceModels\Request\ListLibraryContainersRequest.cs" />
-    <Compile Include="ServiceModels\Request\ListSampleLibrariesFromRunRequest.cs" />
-    <Compile Include="ServiceModels\Request\AbstractRequest.cs" />
-    <Compile Include="ServiceModels\Request\AbstractResourceListRequest.cs" />
-    <Compile Include="ServiceModels\Request\AbstractResourceRequest.cs" />
-    <Compile Include="ServiceModels\Request\CreateBiologicalSampleRequest.cs" />
-    <Compile Include="ServiceModels\Request\CreateLibraryContainerRequest.cs" />
-    <Compile Include="ServiceModels\Request\CreateLibraryPoolRequest.cs" />
-    <Compile Include="ServiceModels\Request\CreateOrUpdateContainerLibrariesRequest.cs" />
-    <Compile Include="ServiceModels\Request\CreatePlannedRunRequest.cs" />
-    <Compile Include="ServiceModels\Request\GetContainerToLibraryMappingRequest.cs" />
-    <Compile Include="ServiceModels\Request\GetLibraryPrepKitIdRequest.cs" />
-    <Compile Include="ServiceModels\Request\ListSupportedLibraryPrepKitsRequest.cs" />
-    <Compile Include="ServiceModels\Request\ListAppResultsFromAppSessionRequest.cs" />
-    <Compile Include="ServiceModels\Request\ListAppSessionsRequest.cs" />
-    <Compile Include="ServiceModels\Request\ListPropertyItemsRequest.cs" />
-    <Compile Include="ServiceModels\Request\DeletePropertyRequest.cs" />
-    <Compile Include="ServiceModels\Request\GetPropertyRequest.cs" />
-    <Compile Include="ServiceModels\Request\ListPropertiesRequest.cs" />
-    <Compile Include="ServiceModels\Request\CreateAppSessionLogsRequest.cs" />
-    <Compile Include="ServiceModels\Request\Billing\CreatePurchaseRefundRequest.cs" />
-    <Compile Include="ServiceModels\Request\Billing\CreatePurchaseRequest.cs" />
-    <Compile Include="ServiceModels\Request\Billing\GetPurchaseRequest.cs" />
-    <Compile Include="ServiceModels\Request\Billing\ListPurchasedProductsRequest.cs" />
-    <Compile Include="ServiceModels\Request\FileContentRedirectMetaRequest.cs" />
-    <Compile Include="ServiceModels\Request\FileRequestPost.cs" />
-    <Compile Include="ServiceModels\Request\GetApiMetaRequest.cs" />
-    <Compile Include="ServiceModels\Request\GetAppResultRequest.cs" />
-    <Compile Include="ServiceModels\Request\GetAppSessionRequest.cs" />
-    <Compile Include="ServiceModels\Request\GetCoverageMetadataRequest.cs" />
-    <Compile Include="ServiceModels\Request\GetCoverageRequest.cs" />
-    <Compile Include="ServiceModels\Request\GetFileInformationRequest.cs" />
-    <Compile Include="ServiceModels\Request\ListGenomeAnnotationsRequest.cs" />
-    <Compile Include="ServiceModels\Request\ListFileSetsRequest.cs" />
-    <Compile Include="ServiceModels\Request\GetGenomeRequest.cs" />
-    <Compile Include="ServiceModels\Request\GetProjectRequest.cs" />
-    <Compile Include="ServiceModels\Request\GetRunRequest.cs" />
-    <Compile Include="ServiceModels\Request\GetSampleRequest.cs" />
-    <Compile Include="ServiceModels\Request\GetVariantHeaderRequest.cs" />
-    <Compile Include="ServiceModels\Request\ListAppResultFilesRequest.cs" />
-    <Compile Include="ServiceModels\Request\ListFileSetFilesRequest.cs" />
-    <Compile Include="ServiceModels\Request\ListFilesRequest.cs" />
-    <Compile Include="ServiceModels\Request\ListRunFilesRequest.cs" />
-    <Compile Include="ServiceModels\Request\ListSampleFilesRequest.cs" />
-    <Compile Include="ServiceModels\Request\ListVariantsRequest.cs" />
-    <Compile Include="ServiceModels\Request\ListAppResultsRequest.cs" />
-    <Compile Include="ServiceModels\Request\ListGenomeRequest.cs" />
-    <Compile Include="ServiceModels\Request\ListProjectsRequest.cs" />
-    <Compile Include="ServiceModels\Request\GetUserRequest.cs" />
-    <Compile Include="ServiceModels\Request\ListRunsRequest.cs" />
-    <Compile Include="ServiceModels\Request\ListSamplesRequest.cs" />
-    <Compile Include="ServiceModels\Request\CreateAppResultRequest.cs" />
-    <Compile Include="ServiceModels\Request\OAuthDeviceAccessTokenRequest.cs" />
-    <Compile Include="ServiceModels\Request\OAuthDeviceAuthRequest.cs" />
-    <Compile Include="ServiceModels\Request\OAuthV2AccessTokenRequest.cs" />
-    <Compile Include="ServiceModels\Request\PlannedRunReadyRequest.cs" />
-    <Compile Include="ServiceModels\Request\SearchRequest.cs" />
-    <Compile Include="ServiceModels\Request\SetPropertiesRequest.cs" />
-    <Compile Include="ServiceModels\Request\UpdateAppSessionRequest.cs" />
-    <Compile Include="ServiceModels\Request\CreateProjectRequest.cs" />
-    <Compile Include="ServiceModels\Request\UpdatePoolToLibraryMappingRequest.cs" />
-    <Compile Include="ServiceModels\Request\UploadFileToAppResultRequest.cs" />
-    <Compile Include="ServiceModels\Request\FileUploadRequestBase.cs" />
-    <Compile Include="ServiceModels\Request\UploadFileToFileSetRequest.cs" />
-    <Compile Include="ServiceModels\Response\AbstractResourceListResponse.cs" />
-    <Compile Include="ServiceModels\Response\CreateBioSampleResponse.cs" />
-    <Compile Include="ServiceModels\Response\CreateLibraryContainerResponse.cs" />
-    <Compile Include="ServiceModels\Response\CreateLibraryPoolResponse.cs" />
-    <Compile Include="ServiceModels\Response\CreateOrUpdateContainerLibrariesResponse.cs" />
-    <Compile Include="ServiceModels\Response\CreatePlannedRunResponse.cs" />
-    <Compile Include="ServiceModels\Response\GetContainerToLibraryMappingResponse.cs" />
-    <Compile Include="ServiceModels\Response\GetLibraryContainerResponse.cs" />
-    <Compile Include="ServiceModels\Response\GetLibraryPrepKitIdResponse.cs" />
-    <Compile Include="ServiceModels\Response\GetAccessTokenDetailsResponse.cs" />
-    <Compile Include="ServiceModels\Response\GetRunSequencingStatsResponse.cs" />
-    <Compile Include="ServiceModels\Response\ListAppSessionsResponse.cs" />
-    <Compile Include="ServiceModels\Response\ListPropertyItemsResponse.cs" />
-    <Compile Include="ServiceModels\Response\DeletePropertyResponse.cs" />
-    <Compile Include="ServiceModels\Response\CreateAppResultResponse.cs" />
-    <Compile Include="ServiceModels\Response\GetPropertyResponse.cs" />
-    <Compile Include="ServiceModels\Response\ListLibraryContainersResponse.cs" />
-    <Compile Include="ServiceModels\Response\ListSampleLibrariesResponse.cs" />
-    <Compile Include="ServiceModels\Response\ListSupportedLibraryPrepKitsResponse.cs" />
-    <Compile Include="ServiceModels\Response\PlannedRunReadyResponse.cs" />
-    <Compile Include="ServiceModels\Response\SearchResponse.cs" />
-    <Compile Include="ServiceModels\Response\SetPropertiesResponse.cs" />
-    <Compile Include="ServiceModels\Response\CreateAppSessionLogsResponse.cs" />
-    <Compile Include="ServiceModels\Response\Billing\ListPurchasedProductsResponse.cs" />
-    <Compile Include="ServiceModels\Response\Billing\CreatePurchaseRefundResponse.cs" />
-    <Compile Include="ServiceModels\Response\Billing\CreatePurchaseResponse.cs" />
-    <Compile Include="ServiceModels\Response\Billing\GetPurchaseResponse.cs" />
-    <Compile Include="ServiceModels\Response\FileContentRedirectMetaResponse.cs" />
-    <Compile Include="ServiceModels\Response\FileResponse.cs" />
-    <Compile Include="ServiceModels\Response\GetApiMetaResponse.cs" />
-    <Compile Include="ServiceModels\Response\GetAppResultResponse.cs" />
-    <Compile Include="ServiceModels\Response\GetAppSessionResponse.cs" />
-    <Compile Include="ServiceModels\Response\GetCoverageMetadataResponse.cs" />
-    <Compile Include="ServiceModels\Response\GetCoverageResponse.cs" />
-    <Compile Include="ServiceModels\Response\GetFileInformationResponse.cs" />
-    <Compile Include="ServiceModels\Response\GetGenomeResponse.cs" />
-    <Compile Include="ServiceModels\Response\GetProjectResponse.cs" />
-    <Compile Include="ServiceModels\Response\GetRunResponse.cs" />
-    <Compile Include="ServiceModels\Response\GetSampleResponse.cs" />
-    <Compile Include="ServiceModels\Response\GetVariantHeaderResponse.cs" />
-    <Compile Include="ServiceModels\Response\ListAppResultFilesResponse.cs" />
-    <Compile Include="ServiceModels\Response\ListAppResultsResponse.cs" />
-    <Compile Include="ServiceModels\Response\ListFileSetFilesResponse.cs" />
-    <Compile Include="ServiceModels\Response\ListFileSetsResponse.cs" />
-    <Compile Include="ServiceModels\Response\ListGenomeAnnotationResponse.cs" />
-    <Compile Include="ServiceModels\Response\ListGenomeResponse.cs" />
-    <Compile Include="ServiceModels\Response\ListProjectsResponse.cs" />
-    <Compile Include="ServiceModels\Response\GetUserResponse.cs" />
-    <Compile Include="ServiceModels\Response\ListPropertiesResponse.cs" />
-    <Compile Include="ServiceModels\Response\ListRunFilesResponse.cs" />
-    <Compile Include="ServiceModels\Response\ListRunsResponse.cs" />
-    <Compile Include="ServiceModels\Response\ListSampleFilesResponse.cs" />
-    <Compile Include="ServiceModels\Response\ListSamplesResponse.cs" />
-    <Compile Include="ServiceModels\Response\ListVariantsResponse.cs" />
-    <Compile Include="ServiceModels\Response\OAuthDeviceAccessTokenResponse.cs" />
-    <Compile Include="ServiceModels\Response\OAuthDeviceAuthResponse.cs" />
-    <Compile Include="ServiceModels\Response\OAuthV2AccessTokensResponse.cs" />
-    <Compile Include="Infrastructure\StringHelpers.cs" />
-    <Compile Include="ServiceModels\Response\UpdateAppSessionResponse.cs" />
-    <Compile Include="ServiceModels\Response\CreateProjectResponse.cs" />
-    <Compile Include="ServiceModels\Response\UpdatePoolToLibraryMappingResponse.cs" />
-    <Compile Include="ServiceModels\Response\UploadFileToAppResultResponse.cs" />
-    <Compile Include="ServiceModels\Response\UploadFileToFileSetResponse.cs" />
-    <Compile Include="Types\AbstractResource.cs" />
-    <Compile Include="Types\AbstractQueryParameters.cs" />
-    <Compile Include="Types\AccessToken.cs" />
-    <Compile Include="Types\Agreement.cs" />
-    <Compile Include="Types\ApiCategoryAttribute.cs" />
-    <Compile Include="Types\ApiMeta.cs" />
-    <Compile Include="Types\PlannedRun.cs" />
-    <Compile Include="Types\SequencingStats.cs" />
-    <Compile Include="Types\SourceLibrary.cs" />
-    <Compile Include="Types\PropertyContentMap.cs" />
-    <Compile Include="Types\Billing\AppSessionBilling.cs" />
-    <Compile Include="Types\Billing\PurchasedProduct.cs" />
-    <Compile Include="Types\Coverage.cs" />
-    <Compile Include="Types\FileContent.cs" />
-    <Compile Include="Types\FileSet.cs" />
-    <Compile Include="Types\GenericAbstractList.cs" />
-    <Compile Include="Types\ApiResponse.cs" />
-    <Compile Include="Types\Application.cs" />
-    <Compile Include="Types\AppResult.cs" />
-    <Compile Include="Types\AppSession.cs" />
-    <Compile Include="Types\File.cs" />
-    <Compile Include="Types\Genome.cs" />
-    <Compile Include="Types\GenomeAnnotation.cs" />
-    <Compile Include="Types\Instrument.cs" />
-    <Compile Include="Types\Notification.cs" />
-    <Compile Include="Types\Project.cs" />
-    <Compile Include="Types\ContentReference.cs" />
-    <Compile Include="Types\Property.cs" />
-    <Compile Include="Types\PropertyContainer.cs" />
-    <Compile Include="Types\PropertyContentLiteral.cs" />
-    <Compile Include="Types\PropertyItem.cs" />
-    <Compile Include="Types\Billing\Purchase.cs" />
-    <Compile Include="Types\RequestOptions.cs" />
-    <Compile Include="Types\Run.cs" />
-    <Compile Include="Types\Sample.cs" />
-    <Compile Include="Types\ScheduledDowntime.cs" />
-    <Compile Include="Types\SearchResult.cs" />
-    <Compile Include="Types\Species.cs" />
-    <Compile Include="Types\User.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Types\AccessTokenDetails.cs" />
-    <Compile Include="Types\Variant.cs" />
-    <Compile Include="Types\VerificationCode.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="BaseSpace.SDK.nuspec">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>
